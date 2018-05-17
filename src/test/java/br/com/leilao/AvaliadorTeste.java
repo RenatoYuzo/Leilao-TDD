@@ -42,12 +42,26 @@ public class AvaliadorTeste {
 		assertEquals(4000.0, maiorValor, 0.001);
 	}
 	
+	@Test
 	public void deveProibirProporMaisDe3LancesPorUsuario() {
+		Leilao leilao = new Leilao();
 		
+		leilao.propoe(new Lance("Jao", 1000.0));
+		leilao.propoe(new Lance("Jao", 2000.0));
+		leilao.propoe(new Lance("Jao", 3000.0));
+		leilao.propoe(new Lance("Jao", 500.0));
+		
+		assertEquals(3, leilao.getLances().size());
 	}
 	
+	@Test
 	public void deveProibirPropor2LancesSeguidosPeloMesmoUsuario() {
+		Leilao leilao = new Leilao();
 		
+		leilao.propoe(new Lance("Jao", 1000.0));
+		leilao.propoe(new Lance("Jao", 2000.0));
+		
+		assertEquals(1, leilao.getLances().size());
 	}
 
 }
